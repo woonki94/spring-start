@@ -3,12 +3,16 @@ package hello.hellospring.Service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberService {
 
+    @Autowired
     private final MemberRepository memberRepository;
     //test에서의 새로운 객체 생성을 하지 않고 Memberservice 클래스에 직접 넣어준다.  beforeeach 사용
     public MemberService(MemberRepository memberRepository){

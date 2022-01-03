@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+
 public class MemberService {
 
-    @Autowired
+
     private final MemberRepository memberRepository;
     //test에서의 새로운 객체 생성을 하지 않고 Memberservice 클래스에 직접 넣어준다.  beforeeach 사용
     public MemberService(MemberRepository memberRepository){

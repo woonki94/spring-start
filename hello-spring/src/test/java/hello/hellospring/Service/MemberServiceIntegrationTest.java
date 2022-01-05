@@ -23,7 +23,7 @@ public class MemberServiceIntegrationTest {
     void join(){
         //given
         Member member = new Member();
-        member.setName("spring");
+        member.setName("spring12");
 
         //when
         Long saveId = memberService.join(member);
@@ -36,9 +36,9 @@ public class MemberServiceIntegrationTest {
     public void duplicatedMemberException(){
         //given
         Member member1 = new Member();
-        member1.setName("spring1");
+        member1.setName("spring321");
         Member member2 = new Member();
-        member2.setName("spring1");
+        member2.setName("spring321");
 
         //when
         memberService.join(member1);

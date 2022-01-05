@@ -23,6 +23,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
 
     @Autowired// 생성자가 하나면 생략 가능
     public JdbcTemplateMemberRepository(DataSource dataSource){
+
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -40,7 +41,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
 
     @Override
     public Optional<Member> findById(Long id) {
-
+        //순수 JDBC에서 try아래 문을 이렇게 짧게 표현 가능.
         List<Member> result = jdbcTemplate.query("select * from member where id = ?",memberRowMapper(), id);
         return result.stream().findAny();
     }
@@ -56,15 +57,12 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
     }
 
     private RowMapper<Member> memberRowMapper(){
-        return new RowMapper<Member>() {
-            @Override
-            public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return (rs, rowNum) -> {
 
-                Member member = new Member();
-                member.setId(rs.getLong("id"));
-                member.setName((rs.getString("name")));
-                return member;
-            }
-        } ;
+            Member member = new Member();
+            member.setId(rs.getLong("id"));
+            member.setName((rs.getString("name")));
+            return member;
+        };
     }
 }

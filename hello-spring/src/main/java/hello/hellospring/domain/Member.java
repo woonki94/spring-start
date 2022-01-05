@@ -1,6 +1,10 @@
 package hello.hellospring.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Member {
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) // db가 id를 알아서 설정해줌
     private Long id;
     private String name;
 
